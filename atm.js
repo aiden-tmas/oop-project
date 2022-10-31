@@ -88,15 +88,21 @@ while (true) {
     window.alert(`Balance: ${user.balance}`);
   } else if (choice === "2") {
     let depositAmount = prompt(
-      "Please enter the amount you would like to deposit:"
+      `Please enter the amount you would like to deposit:\nCurrent Balance: ${user.balance}`
     );
-    user.deposit(parseFloat(depositAmount));
-    window.alert(`New Balance: ${user.balance}`);
+    if (isNaN(depositAmount)) {
+      window.alert("Please enter a numerical value!");
+    } else {
+      user.deposit(parseFloat(depositAmount));
+      window.alert(`New Balance: ${user.balance}`);
+    }
   } else if (choice === "3") {
     let withdrawAmount = prompt(
-      "Please enter the amount you would like to withdraw:"
+      `Please enter the amount you would like to withdraw:\nCurrent Balance: ${user.balance}`
     );
-    if (withdrawAmount > user.accBalance) {
+    if (isNaN(withdrawAmount)) {
+      window.alert("Please enter a numerical value!");
+    } else if (withdrawAmount > user.accBalance) {
       window.alert("The balance cannot be negative!");
     } else {
       user.withdrawal(parseFloat(withdrawAmount));
